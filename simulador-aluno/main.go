@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	kafka2 "github.com/codeedu/imersaofsfc2-simulator/application/kafka"
 	"github.com/codeedu/imersaofsfc2-simulator/infra/kafka"
 	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
 	"github.com/joho/godotenv"
@@ -23,6 +24,7 @@ func main() {
 
 	for msg := range msgChan {
 		fmt.Println(string(msg.Value))
+		go kafka2.Produce(msg)
 	}
 
 	// producer := kafka.NewKafkaProducer()
