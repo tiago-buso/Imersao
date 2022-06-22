@@ -22,7 +22,7 @@ func NewKafkaProducer() *ckafka.Producer {
 // Publish is simple function created to publish new message to kafka
 func Publish(msg string, topic string, producer *ckafka.Producer) error {
 	message := &ckafka.Message{
-		TopicPartition: ckafka.TopicPartition{Topic: &topic, Partition: ckafka.PartitionAny},
+		TopicPartition: ckafka.TopicPartition{Topic: &topic, Partition: ckafka.PartitionAny - 1},
 		Value:          []byte(msg),
 	}
 	err := producer.Produce(message, nil)
